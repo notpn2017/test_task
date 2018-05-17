@@ -11,11 +11,14 @@ function downloadFile($url) {
 
         $resource = fopen('download/get.php', 'w');
 
-        $response = $client->get($url, [
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'key' => 'abc'
+            ],
             'sink' => $resource,
         ]);
-        echo mime_content_type('download/get.php');
-        echo "ok";
+        echo "ok <br/>";
+        //echo mime_content_type('download/get.php');
     } catch (Exception $e) {
         echo "error";
     }
